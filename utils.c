@@ -1,51 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcardina <succosopompelmo>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 15:26:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/09/26 17:58:31 by jcardina         ###   ########.fr       */
+/*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
+/*   Updated: 2023/09/26 17:18:37 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo.h"
-
-int	bigchecker(int ac, char **av)
-{
-	if (ac < 5)
-		return (1);
-	if (check(av) == 1)
-	{
-		printf("error");
-		return (1);
-	}
-	return (0);
-}
-
-int	check(char **av)
+int	ft_atoi(const char *str)
 {
 	int	i;
-	int	j;
+	int	sign;
+	int	result;
 
-	j = 1;
-	while (av[j])
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || (str[i] == 32))
+		i++;
+	sign = 1;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		i = 0;
-		while (av[j][i])
-		{
-			if (av[j][i] > 47 && av[j][i] < 58)
-				i++;
-			else
-				return (1);
-		}
-		j++;
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
-	while (--j > 0)
+	result = 0;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (ft_atoi(av[j]) < 1)
-			return (1);
+		result = result * 10;
+		result = result + str[i] - '0';
+		i++;
 	}
-	return (0);
+	return (result * sign);
 }

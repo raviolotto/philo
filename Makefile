@@ -6,7 +6,7 @@
 #    By: jcardina <succosopompelmo>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 15:33:33 by jcardina          #+#    #+#              #
-#    Updated: 2023/09/26 15:37:47 by jcardina         ###   ########.fr        #
+#    Updated: 2023/09/26 17:25:34 by jcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ NAME = philosopher
 SRC = \
 	philo.c\
 	check.c\
+	utils.c\
 
 OBJ = $(SRC:%.c=%.o)
 
