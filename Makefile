@@ -6,7 +6,7 @@
 #    By: jcardina <succosopompelmo>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 15:33:33 by jcardina          #+#    #+#              #
-#    Updated: 2023/09/26 17:25:34 by jcardina         ###   ########.fr        #
+#    Updated: 2023/09/29 17:09:57 by jcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = \
 	philo.c\
 	check.c\
 	utils.c\
+	init.c\
 
 OBJ = $(SRC:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: jcardina <succosopompelmo>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/09/27 18:48:04 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:05:49 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_philo
 {
-	pthread_t		*tid;
+	pthread_t		tid;
 	int				id;
 	int				meal_n;
 	int				dead;
@@ -33,7 +33,7 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	pthread_t	*tid;
+	t_philo		*philo;
 	uint64_t	t_die;
 	uint64_t	t_eat;
 	uint64_t	t_sleep;
@@ -44,6 +44,9 @@ typedef struct s_table
 int		check(char **av);
 int		ft_atoi(const char *str);
 int		bigchecker(int ac, char **av);
-void	tab_init(t_table *tab, char **av);
+void	tab_init(t_table *tab, char **av, int ac);
+void	philo_list(t_table *tab);
+void	add_front(t_table *tab, t_philo *new);
+t_philo	*philo_init(t_table *tab, int nb);
 
 #endif
