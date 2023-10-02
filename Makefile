@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jcardina <succosopompelmo>                 +#+  +:+       +#+         #
+#    By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 15:33:33 by jcardina          #+#    #+#              #
-#    Updated: 2023/09/29 17:09:57 by jcardina         ###   ########.fr        #
+#    Updated: 2023/10/02 15:37:19 by jcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = \
 	check.c\
 	utils.c\
 	init.c\
+	routine.c\
 
 OBJ = $(SRC:%.c=%.o)
 

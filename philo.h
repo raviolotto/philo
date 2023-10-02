@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcardina <succosopompelmo>                 +#+  +:+       +#+        */
+/*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/09/29 17:05:49 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/02 16:52:43 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 typedef struct s_philo
 {
 	pthread_t		tid;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
 	int				id;
 	int				meal_n;
 	int				dead;
@@ -39,14 +41,21 @@ typedef struct s_table
 	uint64_t	t_sleep;
 	int			nb_philo;
 	int			nb_eat;
+	long		race;
 }	t_table;
 
+// input ok?
 int		check(char **av);
-int		ft_atoi(const char *str);
 int		bigchecker(int ac, char **av);
+// utils
+int		ft_atoi(const char *str);
+// listing and init
 void	tab_init(t_table *tab, char **av, int ac);
 void	philo_list(t_table *tab);
 void	add_front(t_table *tab, t_philo *new);
 t_philo	*philo_init(t_table *tab, int nb);
+// start routinwe
+void	start(t_table *tab);
+void	*routine(void *tab);
 
 #endif

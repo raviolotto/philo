@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcardina <succosopompelmo>                 +#+  +:+       +#+        */
+/*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/09/27 18:29:53 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:01:06 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,48 @@
 	}
 	printa é morto
 }*/
+void *routine(void *tab)
+{
+	t_philo *tmp;
+	int	i;
 
+	i = 0;
+	tmp = (t_philo *)tab;
+	while(i++ < 1000000)
+	{
+		tmp->meal_n++;
+	}
+	printf("%i numero di filosofi   \n", tmp->meal_n);
+	write(1, "a\n", 2);
+	return ((void *)0);
+}
+
+void	start(t_table *tab)
+{
+	int	i;
+	t_philo *tmp;
+
+	tmp = tab->philo;
+	tab->race = 0;
+	i = 0;
+	while(i++ < tab->nb_philo)
+	{
+		if(pthread_create(&tmp->tid, NULL, &routine, tmp) != 0)
+		{
+			write(1, "error\n", 6);
+			return ;
+		}
+		usleep(6000);
+		tmp = tmp->next;
+	}
+	while(--i > 0)
+	{
+		if(pthread_join(tmp->tid, NULL) != 0)
+			{
+				write(1, "error\n", 6);
+				return;
+			}
+		tmp = tmp->prev;
+	}
+}
 

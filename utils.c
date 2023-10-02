@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcardina <succosopompelmo>                 +#+  +:+       +#+        */
+/*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/09/28 12:33:31 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/02 14:40:44 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,11 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
+
+
+// void	free_list(struct t_philo *list)
+// {
+// 	if (list->next)
+// 		free_list(list->next);
+// 	free(list);
+// }

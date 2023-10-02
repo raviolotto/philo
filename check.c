@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcardina <succosopompelmo>                 +#+  +:+       +#+        */
+/*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:26:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/09/26 17:58:31 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/02 14:56:33 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int	bigchecker(int ac, char **av)
 {
-	if (ac < 5)
+	if (ac < 5 || ac > 6)
+	{
+		printf("error");
 		return (1);
+	}
 	if (check(av) == 1)
 	{
 		printf("error");
