@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/02 16:52:43 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:04:07 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	add_front(t_table *tab, t_philo *new);
 t_philo	*philo_init(t_table *tab, int nb);
 // start routinwe
 void	start(t_table *tab);
-void	*routine(void *tab);
+void	*routine(void *philo);
 
 #endif

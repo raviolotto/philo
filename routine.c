@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/02 18:01:06 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:06:37 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@
 	}
 	printa é morto
 }*/
-void *routine(void *tab)
+void *routine(void *philo)
 {
 	t_philo *tmp;
-	int	i;
 
-	i = 0;
-	tmp = (t_philo *)tab;
-	while(i++ < 1000000)
+	tmp = (t_philo *)philo;
+	while(tmp->dead == 0)
 	{
 		tmp->meal_n++;
+			if(tmp->meal_n == 1000000)
+				tmp->dead = 1;
 	}
-	printf("%i numero di filosofi   \n", tmp->meal_n);
-	write(1, "a\n", 2);
+	printf("philo %i ha fatto %i pasti\n", tmp->id, tmp->meal_n);
+	write(1, "\n", 1);
 	return ((void *)0);
 }
 
