@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/02 18:06:37 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:04:27 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 	{
 		if(se la forchetta del vicino é libera)
 		{
+			blocca le forchette
 			printa ho perso la forchetta
-			blocca la tua forchetta
 			mangia
 			tempo morte = 0
 			pasto ++;
@@ -47,6 +47,19 @@
 	}
 	printa é morto
 }*/
+void	ft_lunch(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->l_fork);
+	sms(philo, "has taken a fork");
+	pthread_mutex_lock(philo->r_fork);
+	sms(philo, "has taken a fork");
+	philo->meal_n++;
+	if(philo->meal_n == philo->table->nb_eat)
+		philo->sated = 1;
+	sms(philo, "is eating");
+	ft_usleep(philo->table->t_eat);
+}
+
 void *routine(void *philo)
 {
 	t_philo *tmp;
@@ -54,12 +67,8 @@ void *routine(void *philo)
 	tmp = (t_philo *)philo;
 	while(tmp->dead == 0)
 	{
-		tmp->meal_n++;
-			if(tmp->meal_n == 1000000)
-				tmp->dead = 1;
+		ft_lunch(philo);
 	}
-	printf("philo %i ha fatto %i pasti\n", tmp->id, tmp->meal_n);
-	write(1, "\n", 1);
 	return ((void *)0);
 }
 
@@ -78,9 +87,10 @@ void	start(t_table *tab)
 			write(1, "error\n", 6);
 			return ;
 		}
-		usleep(6000);
+		usleep(60000);
 		tmp = tmp->next;
 	}
+	//funzio di controllo forse un tread a parte
 	while(--i > 0)
 	{
 		if(pthread_join(tmp->tid, NULL) != 0)
