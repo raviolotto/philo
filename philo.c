@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:49:19 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/06 16:52:13 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:51:15 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_printlst(t_table *tab)
 int	main(int ac, char **av)
 {
 	t_table	tab;
+	
 	if (bigchecker(ac, av) == 1)
 		return (1);
 	tab_init(&tab, av, ac);

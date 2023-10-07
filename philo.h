@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/06 17:45:02 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:51:41 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int			bigchecker(int ac, char **av);
 uint64_t	get_time(void);
 int			ft_atoi(const char *str);
 void		sms(t_philo *philo, char *str);
-void		ft_usleep(useconds_t time);
+void		ft_usleep(unsigned int time);
 // listing and init
 void		tab_init(t_table *tab, char **av, int ac);
 void		philo_list(t_table *tab);
@@ -64,7 +64,6 @@ void		start(t_table *tab);
 void		*routine(void *philo);
 
 #endif
-
 
 //a che punto sono arrivato
 //

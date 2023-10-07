@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/06 17:56:26 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:49:06 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ uint64_t	get_time(void)
 
 void	sms(t_philo *philo, char *str)
 {
-	printf("%ld %i %s\n", get_time(), philo->id, str);
+	printf("%ld %i %s\n", (get_time() - philo->table->start), philo->id, str);
 }
 
-void	ft_usleep(__useconds_t time)
+void	ft_usleep(unsigned int time)
 {
 	uint64_t	start;
 

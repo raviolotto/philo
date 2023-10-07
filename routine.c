@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/06 18:04:27 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/07 18:49:49 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,51 +54,54 @@ void	ft_lunch(t_philo *philo)
 	pthread_mutex_lock(philo->r_fork);
 	sms(philo, "has taken a fork");
 	philo->meal_n++;
-	if(philo->meal_n == philo->table->nb_eat)
+	if (philo->meal_n == philo->table->nb_eat)
 		philo->sated = 1;
 	sms(philo, "is eating");
 	ft_usleep(philo->table->t_eat);
+	pthread_mutex_unlock(&philo->l_fork);
+	pthread_mutex_unlock(philo->r_fork);
 }
 
-void *routine(void *philo)
+void	*routine(void *philo)
 {
-	t_philo *tmp;
+	t_philo	*tmp;
 
 	tmp = (t_philo *)philo;
-	while(tmp->dead == 0)
+	while (tmp->dead == 0)
 	{
-		ft_lunch(philo);
+		ft_lunch(tmp);
+		sms(tmp, "is sleeping");
+		ft_usleep(tmp->table->t_sleep);
+		sms(tmp, "is thinking");
 	}
 	return ((void *)0);
 }
 
 void	start(t_table *tab)
 {
-	int	i;
-	t_philo *tmp;
+	int		i;
+	t_philo	*tmp;
 
 	tmp = tab->philo;
 	tab->race = 0;
 	i = 0;
-	while(i++ < tab->nb_philo)
+	while (i++ < tab->nb_philo)
 	{
-		if(pthread_create(&tmp->tid, NULL, &routine, tmp) != 0)
+		if (pthread_create(&tmp->tid, NULL, &routine, tmp) != 0)
 		{
 			write(1, "error\n", 6);
 			return ;
 		}
-		usleep(60000);
+		usleep(6000);
 		tmp = tmp->next;
 	}
-	//funzio di controllo forse un tread a parte
-	while(--i > 0)
+	while (--i > 0)
 	{
-		if(pthread_join(tmp->tid, NULL) != 0)
-			{
-				write(1, "error\n", 6);
-				return;
-			}
+		if (pthread_join(tmp->tid, NULL) != 0)
+		{
+			write(1, "error\n", 6);
+			return ;
+		}
 		tmp = tmp->prev;
 	}
 }
-
