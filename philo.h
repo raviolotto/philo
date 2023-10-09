@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/07 18:53:27 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:12:49 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_table
 	uint64_t	start;
 	int			nb_philo;
 	int			nb_eat;
-	long		race;
 }	t_table;
 
 // input ok?
