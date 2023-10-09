@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:08:42 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/06 16:48:45 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/09 14:30:43 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_philo	*philo_init(t_table *tab, int nb)
 	if (tmp)
 	{
 		tmp->id = nb;
-		tmp->meal_n = tab->nb_eat;
+		tmp->meal_n = 0;
 		tmp->dead = 0;
 		tmp->sated = 0;
 		tmp->table = tab;
