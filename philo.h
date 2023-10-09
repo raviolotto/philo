@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/09 17:12:49 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:20:13 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,26 @@ void		tab_init(t_table *tab, char **av, int ac);
 void		philo_list(t_table *tab);
 void		add_front(t_table *tab, t_philo *new);
 t_philo		*philo_init(t_table *tab, int nb);
-// start routinwe
+// routine
 void		start(t_table *tab);
 void		*routine(void *philo);
+// routine utils
+void		deadtouch(t_philo *philo);
+void		ft_lunch(t_philo *philo);
+int			meal_control(t_table *tab, t_philo *philo);
 
 #endif
 
-//a che punto sono arrivato
+//a che punto sono arrivato?
+//
+//da fare la morte e la funzione che la controlla.
 //
 //
+
+
+//remember
 //
-//
-//
-//
-//
+//aggiornare il tempo di morte una volta che il filosofo ha mangiato;
 //
 //
 //

@@ -6,7 +6,7 @@
 #    By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 15:33:33 by jcardina          #+#    #+#              #
-#    Updated: 2023/10/02 15:37:19 by jcardina         ###   ########.fr        #
+#    Updated: 2023/10/09 17:47:36 by jcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = \
 	philo.c\
 	check.c\
 	utils.c\
+	routine_utils.c\
 	init.c\
 	routine.c\
 
