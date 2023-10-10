@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/09 18:20:13 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:30:47 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_philo
 	pthread_t		tid;
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	*r_fork;
+	uint64_t		time;
 	int				id;
 	int				meal_n;
 	int				dead;
@@ -62,8 +63,9 @@ t_philo		*philo_init(t_table *tab, int nb);
 void		start(t_table *tab);
 void		*routine(void *philo);
 // routine utils
-void		deadtouch(t_philo *philo);
+int			deadtouch(t_philo *philo, int j);
 void		ft_lunch(t_philo *philo);
+//int			death_control(t_table *tab, t_philo *philo);
 int			meal_control(t_table *tab, t_philo *philo);
 
 #endif
