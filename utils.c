@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/09 17:47:54 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:47:34 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,14 @@ uint64_t	get_time(void)
 	return ((tv.tv_sec * (uint64_t)1000) + (tv.tv_usec / 1000));
 }
 
-void	sms(t_philo *philo, char *str)
+void	sms(t_philo *philo, char *str, int i)
 {
-	printf("%ld %i %s\n", (get_time() - philo->table->start), philo->id, str);
+	if (philo->dead == 0)
+		printf("%ld %i %s\n",
+			(get_time() - philo->table->start), philo->id, str);
+	else if (i == 1)
+		printf("%ld %i %s\n",
+			(get_time() - philo->table->start), philo->id, str);
 }
 
 void	ft_usleep(unsigned int time)

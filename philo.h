@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/10 15:30:47 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:11:21 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_philo
 	pthread_t		tid;
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	*r_fork;
-	uint64_t		time;
+	int				status;
 	int				id;
 	int				meal_n;
 	int				dead;
@@ -52,7 +52,7 @@ int			bigchecker(int ac, char **av);
 // utils
 uint64_t	get_time(void);
 int			ft_atoi(const char *str);
-void		sms(t_philo *philo, char *str);
+void		sms(t_philo *philo, char *str, int i);
 void		ft_usleep(unsigned int time);
 // listing and init
 void		tab_init(t_table *tab, char **av, int ac);
@@ -62,11 +62,12 @@ t_philo		*philo_init(t_table *tab, int nb);
 // routine
 void		start(t_table *tab);
 void		*routine(void *philo);
+void		*timer(void *tmp);
+void		*sbirro(void *tab);
 // routine utils
 int			deadtouch(t_philo *philo, int j);
-void		ft_lunch(t_philo *philo);
-//int			death_control(t_table *tab, t_philo *philo);
-int			meal_control(t_table *tab, t_philo *philo);
+void		ft_lunch(t_philo *philo, pthread_t *time);
+int			meal_death(t_table *tab, t_philo *philo);
 
 #endif
 

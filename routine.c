@@ -6,11 +6,29 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/10 15:30:05 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:12:43 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
+
+void	*timer(void *tmp)
+{
+	t_philo		*philo;
+	uint64_t	time;
+
+	philo = (t_philo *)tmp;
+	time = get_time();
+	while(philo->status == 0)
+	{
+		if((get_time() - time) >= philo->table->t_die)
+			{
+				philo->dead = 1;
+			}
+
+	}
+	return ((void *)0);
+}
 
 void	*sbirro(void *tab)
 {
@@ -23,36 +41,29 @@ void	*sbirro(void *tab)
 	philo = tmp->philo;
 	while (i > -1)
 	{
-		if(deadtouch(philo, (meal_control(tmp, philo))) != 0)
+		if(deadtouch(philo, (meal_death(tmp, philo))) != 0)
 			return ((void *)0);
-		// if (meal_control(tmp, philo) == 1)
-		// {
-		// 	deadtouch(philo);
-		// 	return ((void *)0);
-		// }
-		// else if (death_control(tmp, philo) == 1)
-		// {
-		// 	deadtouch(philo);
-		// 	return ((void *)0);
-		// }
 	}
 	return ((void *)0);
 }
 
 void	*routine(void *philo)
 {
-	t_philo	*tmp;
+	t_philo		*tmp;
+	pthread_t	time;
 
 	tmp = (t_philo *)philo;
 	while (tmp->dead == 0)
 	{
-		if(tmp->meal_n > 0)
+		if (tmp->meal_n > 0)
 		{
-			sms(tmp, "is sleeping");
+			sms(tmp, "is sleeping", 0);
 			ft_usleep(tmp->table->t_sleep);
-			sms(tmp, "is thinking");
+			sms(tmp, "is thinking", 0);
 		}
-		ft_lunch(tmp);
+		//if(tmp->meal_n == 0)
+			//pthread_create(&time, NULL, &timer, tmp);
+		ft_lunch(tmp, &time);
 	}
 	return ((void *)0);
 }
