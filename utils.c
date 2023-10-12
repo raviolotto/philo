@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 14:52:51 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:18:14 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	destroyer2(t_philo *philo)
 		pthread_mutex_destroy(&philo->l_fork);
 		free(philo);
 		philo = tmp1;
+		i++;
 	}
 }
 

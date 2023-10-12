@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 15:44:41 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:17:04 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,5 @@ int			meal_death(t_table *tab, t_philo *philo);
 void		ft_join(t_philo *philo, int i);
 
 #endif
+
+//ripulire i destroyer

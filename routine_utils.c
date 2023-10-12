@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 15:46:13 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:14:15 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	deadtouch(t_philo *philo, int j)
 		if (j == 1)
 		{
 			tmp->dead = 1;
+			tmp->status = 1;
 			sms(tmp, "is dead", 1);
+			//pthread_join(*(tmp->tid2), NULL);
 		}
 		pthread_detach(tmp->tid);
 		pthread_detach(*(tmp->tid2));

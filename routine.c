@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 16:05:40 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:18:23 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	start(t_table *tab)
 
 	tmp = tab->philo;
 	i = 0;
-	pthread_create(&cop, NULL, &sbirro, tab);
+	if (pthread_create(&cop, NULL, &sbirro, tab) != 0)
+		return;
 	while (i++ < tab->nb_philo)
 	{
 		if (pthread_create(&tmp->tid, NULL, &routine, tmp) != 0)
