@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/11 19:11:21 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:44:41 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_philo
 {
 	pthread_t		tid;
+	pthread_t		*tid2;
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	*r_fork;
 	int				status;
@@ -54,6 +55,8 @@ uint64_t	get_time(void);
 int			ft_atoi(const char *str);
 void		sms(t_philo *philo, char *str, int i);
 void		ft_usleep(unsigned int time);
+void		destroyer3(t_philo *philo, int i);
+void		destroyer2(t_philo *philo);
 // listing and init
 void		tab_init(t_table *tab, char **av, int ac);
 void		philo_list(t_table *tab);
@@ -68,19 +71,6 @@ void		*sbirro(void *tab);
 int			deadtouch(t_philo *philo, int j);
 void		ft_lunch(t_philo *philo, pthread_t *time);
 int			meal_death(t_table *tab, t_philo *philo);
+void		ft_join(t_philo *philo, int i);
 
 #endif
-
-//a che punto sono arrivato?
-//
-//da fare la morte e la funzione che la controlla.
-//
-//
-
-
-//remember
-//
-//aggiornare il tempo di morte una volta che il filosofo ha mangiato;
-//
-//
-//

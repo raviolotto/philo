@@ -6,7 +6,7 @@
 #    By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 15:33:33 by jcardina          #+#    #+#              #
-#    Updated: 2023/10/09 17:47:36 by jcardina         ###   ########.fr        #
+#    Updated: 2023/10/12 14:57:10 by jcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,12 @@ OBJ = $(SRC:%.c=%.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread -g
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) -pthread -g -o philosopher
+	$(CC) $(OBJ) $(CFLAGS) -o philosopher
 	@echo "\033[32mcompiled\033[0m"
 
 clean:

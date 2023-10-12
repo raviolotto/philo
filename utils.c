@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/11 16:47:34 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:52:51 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,34 @@ void	ft_usleep(unsigned int time)
 // 		free_list(list->next);
 // 	free(list);
 // }
+
+void	destroyer(t_philo *philo)
+{
+	if (philo->id != philo->table->nb_philo)
+		destroyer(philo->next);
+	pthread_mutex_destroy(&philo->l_fork);
+	free(philo);
+}
+
+void	destroyer2(t_philo *philo)
+{
+	int		i;
+	t_philo	*tmp1;
+
+	i = 0;
+	while (i < philo->table->nb_philo)
+	{
+		tmp1 = philo->next;
+		pthread_mutex_destroy(&philo->l_fork);
+		free(philo);
+		philo = tmp1;
+	}
+}
+
+void	destroyer3(t_philo *philo, int i)
+{
+	if (i < philo->table->nb_philo)
+		destroyer3(philo->next, i + 1);
+	pthread_mutex_destroy(&philo->l_fork);
+	free(philo);
+}

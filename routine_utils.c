@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/11 19:12:24 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:46:13 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	deadtouch(t_philo *philo, int j)
 			sms(tmp, "is dead", 1);
 		}
 		pthread_detach(tmp->tid);
+		pthread_detach(*(tmp->tid2));
 		tmp = tmp->next;
 	}
 	return (1);
@@ -37,22 +38,21 @@ int	deadtouch(t_philo *philo, int j)
 
 void	ft_lunch(t_philo *philo, pthread_t *time)
 {
-	// philo->status = 1;
-	// pthread_join(*time, NULL);
-	pthread_mutex_lock(&philo->l_fork);
-	sms(philo, "has taken a fork", 0);
-	pthread_mutex_lock(philo->r_fork);
-	sms(philo, "has taken a fork", 0);
+	if (pthread_mutex_lock(philo->r_fork) == 0)
+	{
+		philo->status = 1;
+		pthread_join(*time, NULL);
+		sms(philo, "has taken a fork", 0);
+		pthread_mutex_lock(&philo->l_fork);
+		sms(philo, "has taken a fork", 0);
+	}
 	philo->meal_n++;
 	if (philo->meal_n == philo->table->nb_eat)
-	{
-		sms(philo, "é sazio", 0);
 		philo->sated = 1;
-	}
 	sms(philo, "is eating", 0);
+	philo->status = 0;
+	pthread_create(time, NULL, &timer, philo);
 	ft_usleep(philo->table->t_eat);
-	// philo->status = 0;
-	// pthread_create(time, NULL, &timer, philo);
 	pthread_mutex_unlock(&philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }
@@ -76,4 +76,17 @@ int	meal_death(t_table *tab, t_philo *philo)
 	if (meal == tab->nb_philo)
 		return (2);
 	return (0);
+}
+
+void	ft_join(t_philo *philo, int i)
+{
+	while (--i > 0)
+	{
+		if (pthread_join(philo->tid, NULL) != 0)
+		{
+			write(1, "dead touch\n", 12);
+			return ;
+		}
+		philo = philo->prev;
+	}
 }

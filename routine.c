@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/11 19:12:43 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/10/12 16:05:40 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@ void	*timer(void *tmp)
 {
 	t_philo		*philo;
 	uint64_t	time;
+	uint64_t	time2;
 
 	philo = (t_philo *)tmp;
 	time = get_time();
-	while(philo->status == 0)
+	while (philo->status == 0)
 	{
-		if((get_time() - time) >= philo->table->t_die)
-			{
-				philo->dead = 1;
-			}
-
+		time2 = get_time() - time;
+		if ((time2) > philo->table->t_die)
+		{
+			philo->dead = 1;
+			return (NULL);
+		}
 	}
-	return ((void *)0);
+	return (NULL);
 }
 
 void	*sbirro(void *tab)
@@ -41,10 +43,10 @@ void	*sbirro(void *tab)
 	philo = tmp->philo;
 	while (i > -1)
 	{
-		if(deadtouch(philo, (meal_death(tmp, philo))) != 0)
-			return ((void *)0);
+		if (deadtouch(philo, (meal_death(tmp, philo))) != 0)
+			return (NULL);
 	}
-	return ((void *)0);
+	return (NULL);
 }
 
 void	*routine(void *philo)
@@ -53,6 +55,9 @@ void	*routine(void *philo)
 	pthread_t	time;
 
 	tmp = (t_philo *)philo;
+	tmp->tid2 = &time;
+	if (tmp->table->nb_philo < 2)
+		tmp->dead = 1;
 	while (tmp->dead == 0)
 	{
 		if (tmp->meal_n > 0)
@@ -61,11 +66,11 @@ void	*routine(void *philo)
 			ft_usleep(tmp->table->t_sleep);
 			sms(tmp, "is thinking", 0);
 		}
-		//if(tmp->meal_n == 0)
-			//pthread_create(&time, NULL, &timer, tmp);
+		if (tmp->meal_n == 0)
+			pthread_create(&time, NULL, &timer, tmp);
 		ft_lunch(tmp, &time);
 	}
-	return ((void *)0);
+	return (NULL);
 }
 
 void	start(t_table *tab)
@@ -84,17 +89,10 @@ void	start(t_table *tab)
 			write(1, "error\n", 6);
 			return ;
 		}
-		usleep(6000);
+		usleep(600);
 		tmp = tmp->next;
 	}
 	pthread_join(cop, NULL);
-	while (--i > 0)
-	{
-		if (pthread_join(tmp->tid, NULL) != 0)
-		{
-			write(1, "dead touch\n", 12);
-			return ;
-		}
-		tmp = tmp->prev;
-	}
+	ft_join(tmp, i);
+	destroyer2(tmp);
 }
