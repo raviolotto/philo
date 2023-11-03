@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 17:14:15 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:50:34 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	deadtouch(t_philo *philo, int j)
 		{
 			tmp->dead = 1;
 			tmp->status = 1;
-			sms(tmp, "is dead", 1);
-			//pthread_join(*(tmp->tid2), NULL);
+			sms(tmp, "is dead", tmp->sms);
 		}
 		pthread_detach(tmp->tid);
 		pthread_detach(*(tmp->tid2));
@@ -54,7 +53,7 @@ void	ft_lunch(t_philo *philo, pthread_t *time)
 	sms(philo, "is eating", 0);
 	philo->status = 0;
 	pthread_create(time, NULL, &timer, philo);
-	ft_usleep(philo->table->t_eat);
+	usleep((philo->table->t_eat) * 1000);
 	pthread_mutex_unlock(&philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }
@@ -69,7 +68,10 @@ int	meal_death(t_table *tab, t_philo *philo)
 	while (i < tab->nb_philo)
 	{
 		if (philo->dead == 1)
+		{
+			philo->sms = 1;
 			return (1);
+		}
 		else if (philo->sated == 1)
 			meal++;
 		i++;
@@ -85,10 +87,7 @@ void	ft_join(t_philo *philo, int i)
 	while (--i > 0)
 	{
 		if (pthread_join(philo->tid, NULL) != 0)
-		{
-			write(1, "dead touch\n", 12);
 			return ;
-		}
 		philo = philo->prev;
 	}
 }

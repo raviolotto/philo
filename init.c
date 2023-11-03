@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:08:42 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 16:30:34 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:51:37 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ t_philo	*philo_init(t_table *tab, int nb)
 	t_philo	*tmp;
 
 	tmp = malloc(sizeof(t_philo));
-	if(!tmp)
+	if (!tmp)
 		return (NULL);
 	if (tmp)
 	{
 		tmp->id = nb;
+		tmp->sms = 0;
 		tmp->meal_n = 0;
 		tmp->dead = 0;
 		tmp->sated = 0;

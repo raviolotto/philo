@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 17:18:23 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:44:25 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*routine(void *philo)
 		if (tmp->meal_n > 0)
 		{
 			sms(tmp, "is sleeping", 0);
-			ft_usleep(tmp->table->t_sleep);
+			usleep((tmp->table->t_sleep) * 1000);
 			sms(tmp, "is thinking", 0);
 		}
 		if (tmp->meal_n == 0)
@@ -82,7 +82,7 @@ void	start(t_table *tab)
 	tmp = tab->philo;
 	i = 0;
 	if (pthread_create(&cop, NULL, &sbirro, tab) != 0)
-		return;
+		return ;
 	while (i++ < tab->nb_philo)
 	{
 		if (pthread_create(&tmp->tid, NULL, &routine, tmp) != 0)

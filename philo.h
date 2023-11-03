@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:46 by jcardina          #+#    #+#             */
-/*   Updated: 2023/10/12 17:17:04 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:47:54 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ typedef struct s_philo
 	pthread_t		*tid2;
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	*r_fork;
-	int				status;
 	int				id;
-	int				meal_n;
+	int				sms;
+	int				status;
 	int				dead;
+	int				meal_n;
 	int				sated;
 	struct s_philo	*next;
 	struct s_philo	*prev;
