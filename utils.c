@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/03 14:15:38 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:42:45 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,48 @@ void	sms(t_philo *philo, char *str, int i)
 			(get_time() - philo->table->start), philo->id, str);
 }
 
-void	ft_usleep(unsigned int time)
-{
-	uint64_t	start;
+// void	destroyer2(t_philo *philo)
+// {
+// 	int		i;
+// 	t_philo	*tmp1;
 
-	start = get_time();
-	while ((get_time() - start) < time)
-		usleep(time / 10);
-}
+// 	i = 0;
+// 	while (i < philo->table->nb_philo && philo != NULL)
+// 	{
+// 		tmp1 = philo->next;
+// 		pthread_mutex_destroy(&philo->l_fork);
+// 		free(philo);
+// 		philo = tmp1;
+// 		i++;
+// 	}
+// }
 
 void	destroyer2(t_philo *philo)
 {
-	int		i;
-	t_philo	*tmp1;
+	t_philo	*tmp;
 
-	i = 0;
-	while (i < philo->table->nb_philo)
+	philo->prev->next = NULL;
+	while(philo != NULL)
 	{
-		tmp1 = philo->next;
+		tmp = philo->next;
 		pthread_mutex_destroy(&philo->l_fork);
 		free(philo);
-		philo = tmp1;
-		i++;
+		philo = tmp;
 	}
 }
+
+// void	destroyer2(t_philo *philo)
+// {
+// 	t_philo	*tmp;
+// 	int i;
+
+// 	i = 0;
+// 	while(i < 4)
+// 	{
+// 		tmp = philo->next;
+// 		pthread_mutex_destroy(&philo->l_fork);
+// 		free(philo);
+// 		philo = tmp;
+// 		i++;
+// 	}
+// }

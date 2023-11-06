@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/03 15:50:34 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:32:58 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int	deadtouch(t_philo *philo, int j)
 	while (i < philo->table->nb_philo)
 	{
 		i++;
-		if (j == 1)
+		if (j == 1 || j == 2)
 		{
 			tmp->dead = 1;
 			tmp->status = 1;
 			sms(tmp, "is dead", tmp->sms);
 		}
-		pthread_detach(tmp->tid);
-		pthread_detach(*(tmp->tid2));
+		//pthread_detach(tmp->tid);
+		//pthread_detach(*(tmp->tid2));
+		//pthread_join(tmp->tid, NULL);
+		//pthread_join(*(tmp->tid2), NULL);
 		tmp = tmp->next;
 	}
 	return (1);
@@ -60,22 +62,24 @@ void	ft_lunch(t_philo *philo, pthread_t *time)
 
 int	meal_death(t_table *tab, t_philo *philo)
 {
-	int	i;
-	int	meal;
+	int		i;
+	int		meal;
+	t_philo	*tmp;
 
 	i = 0;
 	meal = 0;
+	tmp = philo;
 	while (i < tab->nb_philo)
 	{
-		if (philo->dead == 1)
+		if (tmp->dead == 1)
 		{
-			philo->sms = 1;
+			tmp->sms = 1;
 			return (1);
 		}
-		else if (philo->sated == 1)
+		else if (tmp->sated == 1)
 			meal++;
 		i++;
-		philo = philo->next;
+		tmp = tmp->next;
 	}
 	if (meal == tab->nb_philo)
 		return (2);
