@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 17:10:26 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 16:42:45 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:29:23 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,12 @@ void	sms(t_philo *philo, char *str, int i)
 			(get_time() - philo->table->start), philo->id, str);
 }
 
-// void	destroyer2(t_philo *philo)
-// {
-// 	int		i;
-// 	t_philo	*tmp1;
-
-// 	i = 0;
-// 	while (i < philo->table->nb_philo && philo != NULL)
-// 	{
-// 		tmp1 = philo->next;
-// 		pthread_mutex_destroy(&philo->l_fork);
-// 		free(philo);
-// 		philo = tmp1;
-// 		i++;
-// 	}
-// }
-
 void	destroyer2(t_philo *philo)
 {
 	t_philo	*tmp;
 
 	philo->prev->next = NULL;
-	while(philo != NULL)
+	while (philo != NULL)
 	{
 		tmp = philo->next;
 		pthread_mutex_destroy(&philo->l_fork);
@@ -85,19 +69,3 @@ void	destroyer2(t_philo *philo)
 		philo = tmp;
 	}
 }
-
-// void	destroyer2(t_philo *philo)
-// {
-// 	t_philo	*tmp;
-// 	int i;
-
-// 	i = 0;
-// 	while(i < 4)
-// 	{
-// 		tmp = philo->next;
-// 		pthread_mutex_destroy(&philo->l_fork);
-// 		free(philo);
-// 		philo = tmp;
-// 		i++;
-// 	}
-// }
