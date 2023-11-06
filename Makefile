@@ -6,7 +6,7 @@
 #    By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/26 15:33:33 by jcardina          #+#    #+#              #
-#    Updated: 2023/10/12 14:57:10 by jcardina         ###   ########.fr        #
+#    Updated: 2023/11/06 18:51:02 by jcardina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(SRC:%.c=%.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -pthread -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g -fsanitize=thread
 
 all: $(NAME)
 

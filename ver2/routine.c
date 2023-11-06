@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 18:21:54 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:00:16 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,7 @@ void	start(t_table *tab)
 		tmp = tmp->next;
 		i++;
 	}
-	if (pthread_create(&cop, NULL, &sbirro, tab) != 0)
-		return ;
-	if (pthread_join(cop, NULL) != 0)
-		return ;
+	pthread_create(&cop, NULL, &sbirro, tab);
 	ft_join(tmp, i);
+	pthread_join(cop, NULL);
 }

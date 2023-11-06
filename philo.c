@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 17:49:19 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 17:29:58 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:52:13 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ int	main(int ac, char **av)
 	tab_init(tmp, av, ac);
 	start(&tab);
 	destroyer2(tmp->philo);
+	return (0);
 }
