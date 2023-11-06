@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 19:00:16 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:37:09 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	*sbirro(void *tab)
 	while (i > -1)
 	{
 		if (deadtouch(philo, (meal_death(tmp, philo))) != 0)
-			return (NULL);
+			{
+				write(1, "aaa\n", 4);
+				return (NULL);
+			}
 	}
 	return (NULL);
 }
@@ -83,6 +86,7 @@ void	start(t_table *tab)
 
 	tmp = tab->philo;
 	i = 0;
+	pthread_create(&cop, NULL, &sbirro, tab);
 	while (i < tab->nb_philo)
 	{
 		if (pthread_create(&tmp->tid, NULL, &routine, tmp) != 0)
@@ -94,7 +98,6 @@ void	start(t_table *tab)
 		tmp = tmp->next;
 		i++;
 	}
-	pthread_create(&cop, NULL, &sbirro, tab);
 	ft_join(tmp, i);
 	pthread_join(cop, NULL);
 }

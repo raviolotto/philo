@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 18:10:02 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:42:50 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	meal_death(t_table *tab, t_philo *philo)
 
 void	ft_join(t_philo *philo, int i)
 {
-	while (--i > 0)
+	while (--i >= 0)
 	{
 		if (pthread_join(philo->tid, NULL) != 0)
 			return ;
