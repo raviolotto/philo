@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 16:38:03 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:53:43 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	*routine(void *philo)
 			pthread_create(&time, NULL, &timer, tmp);
 		ft_lunch(tmp, &time);
 	}
+	pthread_join(time, NULL);
 	return (NULL);
 }
 

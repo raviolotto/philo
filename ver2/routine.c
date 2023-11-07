@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:32:48 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 19:37:09 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:47:14 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	*timer(void *tmp)
 {
 	t_philo		*philo;
-	//uint64_t	time;
 	uint64_t	time2;
 
 	philo = (t_philo *)tmp;
@@ -44,10 +43,7 @@ void	*sbirro(void *tab)
 	while (i > -1)
 	{
 		if (deadtouch(philo, (meal_death(tmp, philo))) != 0)
-			{
-				write(1, "aaa\n", 4);
-				return (NULL);
-			}
+			return (NULL);
 	}
 	return (NULL);
 }

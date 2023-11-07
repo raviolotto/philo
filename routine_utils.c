@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 17:32:36 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:52:48 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	ft_lunch(t_philo *philo, pthread_t *time)
 	if (pthread_mutex_lock(philo->r_fork) == 0)
 	{
 		philo->status = 1;
-		pthread_join(*time, NULL);
+		if (pthread_join(*time, NULL) != 0)
+			return ;
 		sms(philo, "has taken a fork", 0);
 		pthread_mutex_lock(&philo->l_fork);
 		sms(philo, "has taken a fork", 0);
@@ -50,7 +51,8 @@ void	ft_lunch(t_philo *philo, pthread_t *time)
 		philo->sated = 1;
 	sms(philo, "is eating", 0);
 	philo->status = 0;
-	pthread_create(time, NULL, &timer, philo);
+	if (pthread_create(time, NULL, &timer, philo) != 0)
+		return ;
 	usleep((philo->table->t_eat) * 1000);
 	pthread_mutex_unlock(&philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
@@ -84,7 +86,7 @@ int	meal_death(t_table *tab, t_philo *philo)
 
 void	ft_join(t_philo *philo, int i)
 {
-	while (--i > 0)
+	while (i-- > 0)
 	{
 		if (pthread_join(philo->tid, NULL) != 0)
 			return ;

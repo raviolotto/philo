@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:46:20 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 19:42:50 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:46:14 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	ft_lunch(t_philo *philo)
 {
 	if (pthread_mutex_lock(philo->r_fork) == 0)
 	{
-		//philo->status = 1;
-		//pthread_join(*time, NULL);
 		philo->time = get_time();
 		sms(philo, "has taken a fork", 0);
 		pthread_mutex_lock(&philo->l_fork);
@@ -51,7 +49,6 @@ void	ft_lunch(t_philo *philo)
 		philo->sated = 1;
 	sms(philo, "is eating", 0);
 	philo->status = 0;
-	//pthread_create(time, NULL, &timer, philo);
 	usleep((philo->table->t_eat) * 1000);
 	pthread_mutex_unlock(&philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);

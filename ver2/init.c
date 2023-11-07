@@ -6,7 +6,7 @@
 /*   By: jcardina <jcardina@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:08:42 by jcardina          #+#    #+#             */
-/*   Updated: 2023/11/06 18:43:38 by jcardina         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:44:39 by jcardina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	tab_init(t_table *tab, char **av, int ac)
 	tab->nb_eat = -1;
 	if (ac == 6)
 		tab->nb_eat = ft_atoi(av[5]);
-	else
 	tab->start = get_time();
 	philo_list(tab);
 }
